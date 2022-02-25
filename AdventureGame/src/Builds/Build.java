@@ -8,12 +8,37 @@ public abstract class Build {
 	protected String name;
 	protected Weapon weapon = null;
 	protected Armor armor = null;
+	private boolean odun = false, su = false, yemek = false, dead = false;
 	
 	public String getName() {
 		return name;
 	}
 	public int getDamage() {
 		return damage;
+	}
+	public boolean getOdun() {
+		return odun;
+	}
+	public void setOdun(boolean odun) {
+		this.odun = odun;
+	}
+	public boolean getSu() {
+		return su;
+	}
+	public void setSu(boolean su) {
+		this.su = su;
+	}
+	public boolean getDead() {
+		return dead;
+	}
+	public void setDead() {
+		this.dead = true;
+	}
+	public boolean getYemek() {
+		return yemek;
+	}
+	public void setYemek(boolean yemek) {
+		this.yemek = yemek;
 	}
 	public int getMaxHealth() {
 		return maxHealth;
@@ -63,5 +88,17 @@ public abstract class Build {
 			System.out.println("Mevcut Zırhınız Daha İyi!");
 		}
 		return false;
+	}
+	public boolean takeDamage(int damage) {
+		System.out.println("damage aldınnn");
+		boolean result = false;
+		if(damage>=currentHealth) {
+			currentHealth = 0;
+			setDead();
+			result = true;
+		}else {
+			currentHealth = currentHealth - damage;
+		}
+		return result;
 	}
 }

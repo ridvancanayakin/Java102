@@ -7,19 +7,55 @@ public class Main {
 	static String name;
 	static Build playerCharacter;
 	static Scanner s = new Scanner(System.in);
-	static Market m = new Market();
-	//static Location location ; 
+	static SafeHouse safeHouse = new SafeHouse();
+	static Market market = new Market();
+	static Cave cave = new Cave();
+	static Woods woods = new Woods();
+	static River river = new River();
+	static Location location ;
+	static boolean dead = false;
+	
 	
 	public static void main(String[] args) {
 		
+		location = safeHouse;
 		init();
 		print();
-		m.onLocation(playerCharacter);
+		play();
 	}
 	
+	public static void setDead() {
+		dead = true;
+	}
 	
+	public static void play() {
+		while(true) {
+			printNextTour();
+			switch (s.nextInt()) {
+			case 1:
+				setLocation(safeHouse);
+				break;
+			case 2:
+				setLocation(market);
+				break;
+			case 3:
+				setLocation(cave);
+				break;
+			case 4:
+				setLocation(woods);
+				break;
+			case 5:
+				setLocation(river);
+				break;
+			default:
+				break;
+			}
+		}
+		
+	}
 	
 	public static void print() {
+		System.out.println("--------------------------------------------------------");
 		System.out.println(playerCharacter.getName()+ 
 				" Ýsimli Karakterin:\nCaný : "+ playerCharacter.getCurrentHealth()
 				+ "\nHasarý : "+ playerCharacter.getDamage()
@@ -58,5 +94,15 @@ public class Main {
 				System.out.println("Yanlýþ Bir Seçim Yaptýn. Tekrar Dene!");
 			}
 		}
+	}
+	
+	public static void printNextTour() {
+		System.out.println("--------------------------------------------------------");
+		System.out.println("Nereye Gitmek Ýstiyorsun? \n1-Güvenli Ev\n2-Pazar Yeri\n3-Maðara\n4-Orman\n5-Nehir");
+		
+	}
+	public static void setLocation(Location l) {
+		location = l;
+		location.onLocation(playerCharacter);
 	}
 }

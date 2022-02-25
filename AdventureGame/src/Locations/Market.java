@@ -18,8 +18,12 @@ public class Market extends Location{
 	}
 	@Override
 	public void onLocation(Build pC) {
-		System.out.println("Markete Geldin Buradan Eþya Alabilirsin!\n1-Silah\n2-Zýrh");
+		System.out.println("--------------------------------------------------------");
+		System.out.println("Markete Geldin Buradan Eþya Alabilirsin!\n0-Ayrýl\n1-Silah\n2-Zýrh");
 		switch (s.nextInt()) {
+		case 0:
+			System.out.println("Marketten Ayrýlýyorsun.");
+			break;
 		case 1:
 			buyWeapon(pC);
 			break;
@@ -27,6 +31,7 @@ public class Market extends Location{
 			buyArmor(pC);
 			break;
 		default:
+			System.out.println("Yanlýþ Bir Tercih Yaptýn.");
 			break;
 		}
 		
@@ -43,6 +48,7 @@ public class Market extends Location{
 			System.out.println("Yeni Silahýnýz : " + pC.getWeapon().getClass().getSimpleName());
 			System.out.println("Kalan Paranýz : " + pC.getGold());
 		}
+		onLocation(pC);
 	}
 	
 	private void buyArmor(Build pC) {
@@ -55,6 +61,7 @@ public class Market extends Location{
 			System.out.println("Yeni Zýrhýnýz : " + pC.getArmor().getClass().getSimpleName());
 			System.out.println("Kalan Paranýz : " + pC.getGold());
 		}
+		onLocation(pC);
 	}
 	
 
