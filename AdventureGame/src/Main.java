@@ -12,6 +12,7 @@ public class Main {
 	static Cave cave = new Cave();
 	static Woods woods = new Woods();
 	static River river = new River();
+	static Mine mine = new Mine();
 	static Location location ;
 	static boolean dead = false;
 	
@@ -39,13 +40,25 @@ public class Main {
 				setLocation(market);
 				break;
 			case 3:
-				setLocation(cave);
+				if(playerCharacter.getYemek())
+					System.out.println("Bölgeyi Zaten Temizledin ve Yemeði Aldýn. Buraya Tekrar Giremezsin.");
+				else 
+					setLocation(cave);
 				break;
 			case 4:
-				setLocation(woods);
+				if(playerCharacter.getOdun())
+					System.out.println("Bölgeyi Zaten Temizledin ve Yemeði Aldýn. Buraya Tekrar Giremezsin.");
+				else 
+					setLocation(woods);
 				break;
 			case 5:
-				setLocation(river);
+				if(playerCharacter.getSu())
+					System.out.println("Bölgeyi Zaten Temizledin ve Yemeði Aldýn. Buraya Tekrar Giremezsin.");
+				else 
+					setLocation(river);
+				break;
+			case 6:
+				setLocation(mine);
 				break;
 			default:
 				break;

@@ -41,10 +41,13 @@ public class Market extends Location{
 		for(int i = 0; i<3 ; i++) {
 			System.out.println(i+1 + "- " + weapons[i].toString());
 		}
+		System.out.println("0- Ayrýl");
 		System.out.println("Almak Ýstediðiniz Silahý Seçin");
 		
 		int buy = s.nextInt();
-		if(pC.setWeapon(weapons[buy-1])) {
+		if(buy==0)
+			return;
+		if(pC.setWeapon(weapons[buy-1],weapons[buy-1].getPrice())) {
 			System.out.println("Yeni Silahýnýz : " + pC.getWeapon().getClass().getSimpleName());
 			System.out.println("Kalan Paranýz : " + pC.getGold());
 		}
@@ -56,8 +59,13 @@ public class Market extends Location{
 		for(int i = 0; i<3 ; i++) {
 			System.out.println(i+1 + "- " + armors[i].toString());
 		} 
+		System.out.println("0- Ayrýl");
+		System.out.println("Almak Ýstediðiniz Zýrhý Seçin");
+		
 		int buy = s.nextInt();
-		if(pC.setArmor(armors[buy-1])) {
+		if(buy==0)
+			return;
+		if(pC.setArmor(armors[buy-1],armors[buy-1].getPrice())) {
 			System.out.println("Yeni Zýrhýnýz : " + pC.getArmor().getClass().getSimpleName());
 			System.out.println("Kalan Paranýz : " + pC.getGold());
 		}

@@ -14,7 +14,17 @@ public abstract class Build {
 		return name;
 	}
 	public int getDamage() {
-		return damage;
+		int result = 0;
+		if(null != weapon)
+			result = result +weapon.getDamage();
+		result = result +damage;
+		return result;
+	}
+	public int getBlock() {
+		if(null != armor) {
+			return armor.getBlock();
+		}
+		return 0;
 	}
 	public boolean getOdun() {
 		return odun;
@@ -61,11 +71,11 @@ public abstract class Build {
 	public Armor getArmor() {
 		return armor;
 	}
-	public boolean setWeapon(Weapon w) {
+	public boolean setWeapon(Weapon w ,int price) {
 		if (this.weapon == null || this.weapon.getDamage()< w.getDamage()) {
-			if(this.gold>=w.getPrice()) {
+			if(this.gold>=price) {
 				this.weapon = w;
-				changeGold(-w.getPrice());
+				changeGold(-price);
 				return true;
 			}else {
 				System.out.println("Paranýz Yeterli Deðil!");
@@ -75,11 +85,11 @@ public abstract class Build {
 		}
 		return false;
 	}
-	public boolean setArmor(Armor a) {
+	public boolean setArmor(Armor a, int price) {
 		if (this.armor == null || this.armor.getBlock()<a.getBlock() ) {
-			if(this.gold >= a.getPrice()) {
+			if(this.gold >= price) {
 				this.armor = a;
-				changeGold(-a.getPrice());
+				changeGold(-price);
 				return true;
 			}else {
 				System.out.println("Paranýz Yeterli Deðil!");
@@ -90,7 +100,6 @@ public abstract class Build {
 		return false;
 	}
 	public boolean takeDamage(int damage) {
-		System.out.println("damage aldýnnn");
 		boolean result = false;
 		if(damage>=currentHealth) {
 			currentHealth = 0;
